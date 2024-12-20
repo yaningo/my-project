@@ -24,9 +24,9 @@ jobs:
     
     steps:
       - run: echo "Hello, I am a job named \"release\""
-      - run:
-          name: Failing on purpose
-          command: exit 1
+#      - run:
+#          name: Failing on purpose
+#          command: exit 1
 
   rollback:
     docker:
