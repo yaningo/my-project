@@ -1,0 +1,53 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2024.12
+    resource_class: small
+    
+    steps:
+      - run: echo "Hello, I am a job named \"build\""
+
+  deploy:
+    docker:
+      - image: cimg/base:2024.12
+    resource_class: small
+    
+    steps:
+      - run: echo "Hello, I am a job named \"deploy\""
+
+  release:
+    docker:
+      - image: cimg/base:2024.12
+    resource_class: small
+    
+    steps:
+      - run: echo "Hello, I am a job named \"release\""
+      - run:
+          name: Failing on purpose
+          command: exit 1
+
+  rollback:
+    docker:
+      - image: cimg/base:2024.12
+    resource_class: small
+    
+    steps:
+      - run: echo "Hello, I am a job named \"rollback\""
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+      - release:
+          requires:
+            - deploy
+      - rollback:
+          requires:
+            - release:
+              - failed
+              - canceled
