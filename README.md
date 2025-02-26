@@ -1,3 +1,3 @@
 # my-project
 
-I added the GH App integration
+I added a GH App pipeline AND trigger.
