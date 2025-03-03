@@ -22,8 +22,7 @@ jobs:
           name: "Ya better say hello"
           command: "echo Hello, World!"
       - run: |
-             echo << pipeline.trigger_parameters.circleci.trigger_type >>
-             echo << pipeline.trigger_source >>
+          ls -al /.dockerenv || ls -al /run/.containerenv/.dockerenv
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
