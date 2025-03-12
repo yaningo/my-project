@@ -6,13 +6,11 @@ jobs:
       - image: cimg/node:19.0.1
     steps:
       - checkout
-      - run: exit 1
+      - run: exit 1 || true
       - persist_to_workspace:
           root: /root/workspace
           paths:
             - README.md
-          when: always
-
 
 workflows:
   my-workflow:
