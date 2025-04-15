@@ -6,7 +6,7 @@ jobs:
       - image: cimg/node:19.0.1
     resource_class: small
     steps:
-      - echo "This is the best job"
+      - run: echo "This is the best job"
 #      - checkout
 #      - run: ls -al /tmp/ftpopomol || true
 #      - persist_to_workspace:
@@ -19,7 +19,7 @@ jobs:
       - image: cimg/node:19.0.1
     resource_class: small
     steps:
-      - echo "After the approval"
+      - run: echo "After the approval"
 workflows:
   my-workflow:
     jobs:
