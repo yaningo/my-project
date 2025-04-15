@@ -4,15 +4,26 @@ jobs:
   test:
     docker:
       - image: cimg/node:19.0.1
+    resource_class: small
     steps:
-      - checkout
-      - run: ls -al /tmp/ftpopomol || true
-      - persist_to_workspace:
-          root: /root/workspace
-          paths:
-            - README.md
+      - echo "This is the best job"
+#      - checkout
+#      - run: ls -al /tmp/ftpopomol || true
+#      - persist_to_workspace:
+#          root: /root/workspace
+#          paths:
+#            - README.md
 
+  check:
+    docker:
+      - image: cimg/node:19.0.1
+    resource_class: small
+    steps:
+      - echo "After the approval"
 workflows:
   my-workflow:
     jobs:
       - test
+      - attend: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval
+      - check
