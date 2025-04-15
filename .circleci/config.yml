@@ -26,7 +26,8 @@ workflows:
       - test
       - attend:
           type: approval
-          requires: test
+          requires:
+            - test
       - check:
           requires:
             - attend
