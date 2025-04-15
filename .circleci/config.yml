@@ -24,6 +24,9 @@ workflows:
   my-workflow:
     jobs:
       - test
-      - attend: # <<< A job that will require manual approval in the CircleCI web application.
+      - attend:
           type: approval
-      - check
+          requires: test
+      - check:
+          requires:
+            - attend
