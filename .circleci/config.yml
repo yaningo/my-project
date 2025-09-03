@@ -30,6 +30,6 @@ workflows:
   main-workflow:
     jobs:
       - test:
-          serial-group: << pipeline.project.slug >>/deploy-group
+          serial-group: << pipeline.project.slug >>/test-group
       - build:
-          serial-group: << pipeline.project.slug >>/deploy-group
+          serial-group: << pipeline.project.slug >>/build-group
