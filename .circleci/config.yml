@@ -1,35 +1,27 @@
 version: 2.1
 
+commands:
+  print:
+    parameters:
+      message:
+        type: string
+    steps:
+      - run: echo << parameters.message >>
+
 jobs:
-  test:
-    docker:
-      - image: cimg/node:19.0.1
-    resource_class: small
+  daily-message:
+    machine:
+      image: ubuntu-2004:current
+    resource_class: large
+    parameters:
+      message:
+        type: string
     steps:
-      - run: |
-          echo "This is the best job"
-          sleep 33
-#      - checkout
-#      - run: ls -al /tmp/ftpopomol || true
-#      - persist_to_workspace:
-#          root: /root/workspace
-#          paths:
-#            - README.md
-
-  build:
-    docker:
-      - image: cimg/node:19.0.1
-    resource_class: small
-    steps:
-      - run: echo "Ze build"
-
-# Creating multiple pipelines at the same time with the below config will results in
-# all pipelines running test and build but only a single pipeline will run deploy at a time.
+      - print:
+          message: Printing << parameters.message >>
 
 workflows:
-  main-workflow:
+  my-workflow:
     jobs:
-      - test:
-          serial-group: << pipeline.project.slug >>/test-group
-      - build:
-          serial-group: << pipeline.project.slug >>/build-group
+      - daily-message:
+         message: echo << parameters.message >>
