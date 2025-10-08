@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   run-build-service-1-job:
     type: string
-    default: "value"
+    default: "second value"
 
 jobs:
   say-hello:
