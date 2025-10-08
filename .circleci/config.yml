@@ -31,6 +31,7 @@ jobs:
           command: "echo Hello, World!"
       - continuation/continue:
           configuration_path: .circleci/continue.yml
+          parameters: '{ "run-build-service-1-job" : "bababa" }'
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
