@@ -23,7 +23,7 @@ jobs:
 
 workflows:
   deploy:
-     when:
+    when:
        equal: [ prod, << pipeline.parameters.environment >> ]
     jobs:
       - deploy-job
